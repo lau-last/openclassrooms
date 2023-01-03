@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +19,14 @@
 
     <!-- Inclusion du formulaire de connexion -->
     <?php include_once('login.php'); ?>
+
+    <!--    Inclusion des functions-->
+    <?php include_once('functions.php'); ?>
     <h1>Site de Recettes !</h1>
 
     <!-- Si l'utilisateur existe, on affiche les recettes -->
-    <?php if(isset($loggedUser)): ?>
-        <?php foreach(get_recipes($recipes, $limit) as $recipe) : ?>
+    <?php if (isset($_SESSION['LOGGED_USER'])): ?>
+        <?php foreach (get_recipes($recipes, $limit) as $recipe) : ?>
             <article>
                 <h3><?php echo $recipe['title']; ?></h3>
                 <div><?php echo $recipe['recipe']; ?></div>
